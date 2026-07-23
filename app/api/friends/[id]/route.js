@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 
 export async function GET(_request, { params }) {
   const { id } = await params;
-  const friend = getFriend(Number(id));
+  const friend = await getFriend(id);
   if (!friend) {
     return NextResponse.json({ error: "見つかりません" }, { status: 404 });
   }
@@ -15,7 +15,7 @@ export async function GET(_request, { params }) {
 export async function PATCH(request, { params }) {
   const { id } = await params;
   const body = await request.json().catch(() => ({}));
-  const updated = updateFriend(Number(id), body);
+  const updated = await updateFriend(id, body);
   if (!updated) {
     return NextResponse.json({ error: "見つかりません" }, { status: 404 });
   }
@@ -24,7 +24,7 @@ export async function PATCH(request, { params }) {
 
 export async function DELETE(_request, { params }) {
   const { id } = await params;
-  const ok = deleteFriend(Number(id));
+  const ok = await deleteFriend(id);
   if (!ok) {
     return NextResponse.json({ error: "見つかりません" }, { status: 404 });
   }

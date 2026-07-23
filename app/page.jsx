@@ -3,8 +3,8 @@ import FriendsClient from "@/components/FriendsClient";
 
 export const dynamic = "force-dynamic";
 
-export default function HomePage() {
-  const friends = listFriends();
+export default async function HomePage() {
+  const friends = await listFriends();
   return (
     <div>
       <h1 className="page-title">友達リスト</h1>

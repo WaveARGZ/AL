@@ -3,8 +3,8 @@ import { listFriends, createFriend } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 
-export function GET() {
-  return NextResponse.json(listFriends());
+export async function GET() {
+  return NextResponse.json(await listFriends());
 }
 
 export async function POST(request) {
@@ -13,7 +13,7 @@ export async function POST(request) {
   if (!name) {
     return NextResponse.json({ error: "名前は必須です" }, { status: 400 });
   }
-  const friend = createFriend({
+  const friend = await createFriend({
     name,
     email: body.email?.trim() || null,
     phone: body.phone?.trim() || null,

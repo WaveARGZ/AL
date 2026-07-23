@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 export default async function FriendDetailPage({ params }) {
   const { id } = await params;
-  const friend = getFriend(Number(id));
+  const friend = await getFriend(id);
   if (!friend) notFound();
 
   const rows = [
